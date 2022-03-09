@@ -18,6 +18,9 @@ const App = () => {
     const reset = () => {
         setResults(!results);
     };
+
+
+    // Your JavaScript code will go here
    
     
     return (
@@ -46,6 +49,8 @@ const App = () => {
                         </div>
                     ) : <div>
                             <h2>Here are your results!</h2>
+
+                            {/* Your HTML code will go here */}
                             
 
                             <button onClick={reset} className='form-button' id='restart' name='restart'>Enter New Address</button>
