@@ -1,15 +1,18 @@
 import './App.css';
-import React, { useState } from 'react';    
+import React, { useState } from 'react'; 
 
+// Add web3.js and your Infura URL here
 
 const App = () => {
     
     // State variables
     const [results, setResults] = useState(false);
+    // Your state variables go here
 
 
     // set the address to user input
     const handleInput = event => {
+        // Change this line
         console.log('This is our Ethereum Address');
     };
 
