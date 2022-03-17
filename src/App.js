@@ -46,6 +46,8 @@ const App = () => {
                             
                             <input onChange={handleInput} className='text-input' type='text' name='wallet' id='wallet' placeholder='0x...' required/>
                             <br />
+        
+                            {/* Change this button function */}
                             <button onClick={reset} className='form-button' type='submit' name='submit' id='submit'>
                                 Submit
                             </button>
