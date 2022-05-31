@@ -1,56 +1,71 @@
-import elon from './elon.jpg';
 import './App.css';
-import React, { useState, useEffect } from 'react';
-import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
+import React, { useState } from 'react'; 
 
-const Web3 = require('web3'); 
+// Add web3.js and your Infura URL here
 
-const APP_NAME = 'Crowdfunding App'
-//const APP_LOGO_URL = 'https://example.com/logo.png'
-const DEFAULT_ETH_JSONRPC_URL = 'https://mainnet.infura.io/v3/<YOUR_INFURA_API_KEY>';
-const DEFAULT_CHAIN_ID = 3; // Ropsten Network ID
-
-// Initialize Coinbase Wallet SDK
-export const coinbaseWallet = new CoinbaseWalletSDK({
-    appName: APP_NAME,
-})
-
-// Initialize Web3 Provider
-export const ethereum = coinbaseWallet.makeWeb3Provider('', DEFAULT_CHAIN_ID);
-
-// Initialize Web3 object
-export const web3 = new Web3(ethereum);
-console.log(web3);
-
-function App() {
-
-    // State Variables
-    const [isConnected, setIsConnected] = useState(false);
+const App = () => {
+    
+    // State variables
+    const [results, setResults] = useState(false);
+    // Your state variables go here
 
 
-    const connectWallet = () => {
-        // insert the coinbase wallet sdk initialization here I think
-        console.log("Connecting wallet dialogue")
-        setIsConnected(!isConnected);
-    }
+    // set the address to user input
+    const handleInput = event => {
+        // Change this line
+        console.log('This is our Ethereum Address');
+    };
 
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={elon} alt="Elon holding the Twitter logo" />
-        <p>
-          Let's buy Twitter before Elon does!
-        </p>
-        {/* this button should change depending if the user is connected or not*/}
-        {!isConnected ? (
-            <button onClick={connectWallet} className="button" name="connectButton" id="connectButton">Connect Wallet</button>
-        ) : <button onClick={connectWallet} className="button" name="connectButton" id="connectButton">Please Donate</button>
-        }
-         
-      </header>
-    </div>
-  );
+    // Reset the app
+    const reset = () => {
+        setResults(!results);
+    };
+
+
+    // Your JavaScript code will go here
+   
+    
+    return (
+        <div className='App'>
+            <div className='container'>
+                <div className='header-container'>
+                    <h1 className='header gradient-text'>
+                        ETH Year in Review
+                    </h1>
+                </div>
+
+                <div className='formContainer'>
+                    {!results ? (
+                        <div>
+                            <h2 className='sub-text'>
+                                Enter an Ethereum wallet address to see your 2021 stats! 
+                            </h2>
+                            <p>If you don't have a wallet address, feel free to use <a href='https://etherscan.io/address/0xd8da6bf26964af9d7eed9e03e53415d37aa96045' target='_blank'>Vitalik's</a> ;)</p>
+                            <p>0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045</p>
+                            
+                            <input onChange={handleInput} className='text-input' type='text' name='wallet' id='wallet' placeholder='0x...' required/>
+                            <br />
+        
+                            {/* Change this button function */}
+                            <button onClick={reset} className='form-button' type='submit' name='submit' id='submit'>
+                                Submit
+                            </button>
+                        </div>
+                    ) : <div>
+                            <h2>Here are your results!</h2>
+
+                            {/* Your HTML code will go here */}
+                            
+
+                            <button onClick={reset} className='form-button' id='restart' name='restart'>Enter New Address</button>
+                        </div>} 
+               </div>
+               <p>Additional Resources: <a href='https://web3js.readthedocs.io/en/v1.7.0/web3.html' target='_blank'>Web3.js Docs</a>, <a href='https://docs.infura.io/infura/networks/ethereum' target='_blank'>Infura Docs</a></p> 
+            </div>
+        </div>
+    )
 }
+
 
 export default App;
